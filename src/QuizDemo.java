@@ -6,7 +6,7 @@ public class QuizDemo extends JFrame implements ActionListener, ItemListener {
 	//============================================================================
 	//Variables
 	final int SCREEN_WIDTH = 350;
-	final int SCREEN_HEIGHT = 350;
+	final int SCREEN_HEIGHT = 360;
 	
 	int totalscore = 0;
 	int points = 5;
@@ -149,7 +149,7 @@ public class QuizDemo extends JFrame implements ActionListener, ItemListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		score.setText("Score: " + totalscore + "/20");
-		totalscore = 0; //reset the score 
+		totalscore = 0; //reset the score
 	}
 	//===========================================================================
 	//Deals with the fields and right answers
@@ -158,27 +158,45 @@ public class QuizDemo extends JFrame implements ActionListener, ItemListener {
 		Object source = e.getSource();
 		int select = e.getStateChange(); //the selection
 		//Question 1
-		if(q1a4.isSelected()) {
-			totalscore += points;
+		if(source == q1a4) {
+			if(select == ItemEvent.SELECTED) {
+				correctAnswer = true;
+			}else if(select == ItemEvent.DESELECTED) {
+				correctAnswer = false;
+			}
 		}
 		//Question 2
-		else if(q2a4.isSelected()) {
-			totalscore += points;
+		else if(source == q2a4) {
+			if(select == ItemEvent.SELECTED) {
+				correctAnswer = true;
+			}else if(select == ItemEvent.DESELECTED) {
+				correctAnswer = false;
+			}
 		}
 		//question 3
 		else if(source == q3) {
+			int positionOfSelection = q3.getSelectedIndex();
 			if(select == ItemEvent.SELECTED) {
-				int positionOfSelection = q3.getSelectedIndex();
 				if(positionOfSelection == 1) {
-					totalscore += points;
+					correctAnswer = true;
 				}else {
-					totalscore += 0;
+					correctAnswer = false;
 				}
 			}
 		}
 		//question 4
-		else if(q4a2.isSelected()) {
-			totalscore += points;
+		else if(source == q4a2) {
+			if(select == ItemEvent.SELECTED) {
+				correctAnswer = true;
+			}else if(select == ItemEvent.DESELECTED) {
+				correctAnswer = false;
+			}
 		}
+		//Calculates the answer
+		if(correctAnswer) {
+			totalscore += points;
+			correctAnswer = false;
+		}
+
 	}
 }
