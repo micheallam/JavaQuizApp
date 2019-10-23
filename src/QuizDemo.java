@@ -149,7 +149,6 @@ public class QuizDemo extends JFrame implements ActionListener, ItemListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		score.setText("Score: " + totalscore + "/20");
-		totalscore = 0; //reset the score
 	}
 	//===========================================================================
 	//Deals with the fields and right answers
@@ -160,17 +159,17 @@ public class QuizDemo extends JFrame implements ActionListener, ItemListener {
 		//Question 1
 		if(source == q1a4) {
 			if(select == ItemEvent.SELECTED) {
-				correctAnswer = true;
+				totalscore += points;
 			}else if(select == ItemEvent.DESELECTED) {
-				correctAnswer = false;
+				totalscore -= points;
 			}
 		}
 		//Question 2
 		else if(source == q2a4) {
 			if(select == ItemEvent.SELECTED) {
-				correctAnswer = true;
+				totalscore += points;
 			}else if(select == ItemEvent.DESELECTED) {
-				correctAnswer = false;
+				totalscore -= points;
 			}
 		}
 		//question 3
@@ -178,25 +177,19 @@ public class QuizDemo extends JFrame implements ActionListener, ItemListener {
 			int positionOfSelection = q3.getSelectedIndex();
 			if(select == ItemEvent.SELECTED) {
 				if(positionOfSelection == 1) {
-					correctAnswer = true;
+					totalscore += points;
 				}else {
-					correctAnswer = false;
+					totalscore -= points;
 				}
 			}
 		}
 		//question 4
 		else if(source == q4a2) {
 			if(select == ItemEvent.SELECTED) {
-				correctAnswer = true;
+				totalscore += points;
 			}else if(select == ItemEvent.DESELECTED) {
-				correctAnswer = false;
+				totalscore -= points;
 			}
 		}
-		//Calculates the answer
-		if(correctAnswer) {
-			totalscore += points;
-			correctAnswer = false;
-		}
-
 	}
 }
